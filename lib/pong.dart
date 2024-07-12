@@ -1,7 +1,5 @@
-import 'package:flutter/animation.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart'; // Import this package
+import 'package:flutter/services.dart';
 
 import 'ball.dart';
 import 'bat.dart';
@@ -37,8 +35,7 @@ class _PongState extends State<Pong> with SingleTickerProviderStateMixin {
       horizontalDirection = Direction.left;
     }
     if (ballPosY >= (screenHeight! - batHeight - 50) && verticalDirection == Direction.down) {
-      if (ballPosX >= batPosition && ballPosX <= batPosition + batWidth &&
-          ballPosY >= screenHeight! - batHeight - 50 && ballPosY <= screenHeight! - 50) {
+      if (ballPosX >= batPosition && ballPosX <= batPosition + batWidth) {
         verticalDirection = Direction.up;
         score++;
         if (score % 10 == 0) {
@@ -71,7 +68,6 @@ class _PongState extends State<Pong> with SingleTickerProviderStateMixin {
             ),
             TextButton(
               onPressed: () {
-                // Use SystemChannels to ensure compatibility in local environment
                 SystemChannels.platform.invokeMethod('SystemNavigator.pop');
               },
               child: const Text("Exit"),
